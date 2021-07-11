@@ -15,14 +15,14 @@ export default function TeamMemberForm(props) {
 	};
 
 	return (
-		<form className="team Member Form container" onSubmit={onSubmit}>
+		<form className="FormContainer" onSubmit={onSubmit}>
 			<div className="inputs">
 				<label>
 					Name
 					<input
 						type="Text"
 						onChange={onChange}
-						name="username"
+						name="name"
 						value={values.name}
 					/>
 				</label>
@@ -35,6 +35,18 @@ export default function TeamMemberForm(props) {
 						value={values.email}
 					/>
 				</label>
+				<label>
+					Role
+					<select onChange={onChange} name="role" value={values.role}>
+						<option>-- Select Team Member's Main Raid Role --</option>
+						<option value="tank">Tank</option>
+						<option value="dps">DPS</option>
+						<option value="healer">Healer</option>
+					</select>
+				</label>
+				<div className="submit">
+					<button>submit</button>
+				</div>
 			</div>
 		</form>
 	);

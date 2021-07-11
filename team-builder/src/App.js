@@ -9,20 +9,29 @@ const initialFormValues = {
 	role: "",
 };
 
-function App() {
-	const [teamMembers, setTeamMembers] = useState([]);
+const initialTeamMember = [
+	{ id: 1, name: "Gulrak", email: "gulrak@gulrak.com", role: "DPS" },
+];
+
+export default function App() {
+	const [teamMembers, setTeamMembers] = useState(initialTeamMember);
 	const [formValues, setFormValues] = useState(initialFormValues);
+
 	const updateForm = (inputName, inputValue) => {
 		setFormValues({ ...formValues, [inputName]: inputValue });
 	};
 
 	const submitForm = () => {
-		const { username, email, role } = formValues;
-		setTeamMembers([...teamMembers], {
-			username: username.trim(),
-			email: email.trim(),
-			role: role.trim(),
-		});
+		const { name, email, role } = formValues;
+		setTeamMembers([
+			...teamMembers,
+			{
+				name: name,
+				email: email,
+				role: role,
+			},
+		]);
+		console.log(teamMembers);
 		setFormValues(initialFormValues);
 	};
 
@@ -31,11 +40,9 @@ function App() {
 			<h1> Team Member Registration</h1>
 			<Form values={formValues} update={updateForm} submit={submitForm} />
 
-			{teamMembers.map((teamMember) => {
-				return <TeamMemberMaker key={teamMember.id} details={teamMember} />;
+			{teamMembers.map((teamMembers) => {
+				return <TeamMemberMaker key={teamMembers.id} details={teamMembers} />;
 			})}
 		</div>
 	);
 }
-
-export default App;
